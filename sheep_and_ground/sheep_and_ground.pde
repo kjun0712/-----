@@ -12,7 +12,7 @@ background(#81E3FF);    //하늘색 설정
 fill(#24AA00);    //땅,잔디 색설정
 rect(0,py,width,height);    //땅범위설정
 
-for(int i=0; i<width; i+=height/120*5){
+for(int i=0; i<width; i+=g*5){
     for(int t=py; t<height; t+=g*5){
       if(i<sx+g*10){
          if(i>sx-g*15){
@@ -23,10 +23,16 @@ for(int i=0; i<width; i+=height/120*5){
              }
            }
          }
- 
+      fill(#24AA00);
       triangle(i+g,t,i+g*3,t,i+g*2,t-g*4);
       triangle(i,t,i+g*5,t,i+g,t-g*3);
       triangle(i+g,t,i+g*2,t,i+g,t-g*3);
+      /*
+      fill(#FF64DB);
+      ellipse(i+g*2,t-g*4,g*3,g*3);
+      fill(#C14CA6);
+      ellipse(i+g*2,t-g*4,g,g);
+      */    //꽃봉오리
     }
   }    //잔디그리기
 
