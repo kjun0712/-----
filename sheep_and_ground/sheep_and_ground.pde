@@ -9,7 +9,7 @@ int sx=width/2;    //양의 x좌표
 int sy=height*3/4;    //양의 y좌표
 
 background(#81E3FF);    //하늘색 설정
-fill(#24AA00);    //땅,잔디 색설정
+fill(#24AA00);    //땅 색설정
 rect(0,py,width,height);    //땅범위설정
 
 for(int i=0; i<width; i+=g*5){
@@ -23,16 +23,16 @@ for(int i=0; i<width; i+=g*5){
              }
            }
          }
-      fill(#24AA00);
+      fill(#24AA00);    //잔디색설정
       triangle(i+g,t,i+g*3,t,i+g*2,t-g*4);
       triangle(i,t,i+g*5,t,i+g,t-g*3);
       triangle(i+g,t,i+g*2,t,i+g,t-g*3);
       /*
-      fill(#FF64DB);
+      fill(#FF64DB);    //꽃잎색설정
       ellipse(i+g*2,t-g*4,g*3,g*3);
-      fill(#C14CA6);
-      ellipse(i+g*2,t-g*4,g,g);
-      */    //꽃봉오리
+      fill(#C14CA6);    //꽃중앙색설정
+      ellipse(i+g*2,t-g*4,g,g);   //꽃
+      */
     }
   }    //잔디그리기
 
