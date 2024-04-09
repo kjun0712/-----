@@ -1,14 +1,14 @@
 void setup(){
   size(1000,800);
-  py=0;    //지평선위치설정
   g=height/120;    //잔디 모눈 한칸값
   s=height/80;    //양 모눈 한칸값
   sx1=width*3/4;    //양1의 x좌표
   sy1=height*2/3;    //양1의 y좌표
   sx2=width/3;    //양2의 x좌표
   sy2=height*2/3;    //양2의 y좌표
+  sd1=1;
+  sd2=1;
 }
-int py;    //지평선위치설정
 int g;    //잔디 모눈 한칸값
 int s;    //양 모눈 한칸값
 int sx1;    //양1의 x좌표
@@ -16,19 +16,20 @@ int sy1;    //양1의 y좌표
 int sx2;    //양2의 x좌표
 int sy2;    //양2의 y좌표
 int i,t;
+int sd1,sd2;
 
 void grass1(){
-      fill(#24AA00);    //잔디색: 초록색
-      triangle(i+g*6,t,i+g*8,t,i+g*7,t-g*4);    //잔디그리기1
-      triangle(i+g*5,t,i+g*10,t,i+g*6,t-g*3);    //잔디그리기2
-      triangle(i+g*6,t,i+g*7,t,i+g*6,t-g*3);    //잔디그리기3
+  fill(#24AA00);    //잔디색: 초록색
+  triangle(i+g*6,t,i+g*8,t,i+g*7,t-g*4);    //잔디그리기1
+  triangle(i+g*5,t,i+g*10,t,i+g*6,t-g*3);    //잔디그리기2
+  triangle(i+g*6,t,i+g*7,t,i+g*6,t-g*3);    //잔디그리기3
 }
 
 void grass2(){
-      fill(#24AA00);    //잔디색: 초록색
-      triangle(i+g*6,t,i+g*8,t,i+g*7,t-g*4);    //잔디그리기1
-      triangle(i+g*5,t,i+g*10,t,i+g*6,t-g*3);    //잔디그리기2
-      triangle(i+g*6,t,i+g*7,t,i+g*6,t-g*3);    //잔디그리기3
+  fill(#24AA00);    //잔디색: 초록색
+  triangle(i+g*6,t,i+g*8,t,i+g*7,t-g*4);    //잔디그리기1
+  triangle(i+g*5,t,i+g*10,t,i+g*6,t-g*3);    //잔디그리기2
+  triangle(i+g*6,t,i+g*7,t,i+g*6,t-g*3);    //잔디그리기3
 }
 
 void flower1(){
@@ -104,7 +105,7 @@ void sheep1(){
   ellipse(sx1-s*5, sy1-s*7/2, s*2,s*2);    //머리털그리기3
 }
 
-void sheep2(){
+void sheep2_r(){
     strokeWeight(10);
   stroke(#5A5A5A);    //다리색: 진회색
   line(sx2-s*5, sy2+s*4,sx2-s*5, sy2+s*8);    //다리그리기1
@@ -154,6 +155,54 @@ void sheep2(){
   ellipse(sx2, sy2-s*7/2, s*2,s*2);    //머리털그리기3
 }
 
+void sheep2_l(){
+  strokeWeight(10);
+  stroke(#5A5A5A);    //다리색: 진회색
+  line(sx2-s*3, sy2+s*4,sx2-s*3, sy2+s*8);    //다리그리기1
+  line(sx2-s, sy2+s*4,sx2-s, sy2+s*8);    //다리그리기2
+  line(sx2+s*2, sy2+s*4,sx2+s*2, sy2+s*8);    //다리그리기3
+  line(sx2+s*4, sy2+s*4,sx2+s*4, sy2+s*8);    //다리 그리기4
+
+  fill(255);    //몸통색: 흰색
+  stroke(255);    //몸통의 원 라인색: 흰색
+  ellipse(sx2+s, sy2, s*8,s*8);    //매인몸통 그리기
+
+  ellipse(sx2-s*5, sy2, s*4,s*6);    //몸통털그리기1
+  ellipse(sx2-s*3, sy2+s*3, s*5,s*6);    //몸통털그리기2
+  ellipse(sx2, sy2+s*4, s*4,s*4);    //몸통털그리기3
+  ellipse(sx2+s*2, sy2+s*4, s*4,s*4);    //몸통털그리기4
+  ellipse(sx2+s*4, sy2+s*3, s*4,s*4);    //몸통털그리기5
+  ellipse(sx2+s*5, sy2+s, s*4,s*4);    //몸통털그리기6
+  ellipse(sx2+s*4, sy2-s, s*4,s*4);    //몸통털그리기7
+  ellipse(sx2+s*2, sy2-s*2, s*6,s*5);    //몸통털그리기8
+
+  fill(#818181);    //머리색: 회색
+  ellipse(sx2-s*3, sy2-s, s*5,s*6);    //머리
+
+  strokeWeight(10);    //귀굵기: 10
+  stroke(#5A5A5A);    //귀색: 진회색
+  noFill();    //귀 채우지 않기
+  arc(sx2-s*6, sy2-s*3,s*2,s*2,radians(0),radians(90));    //왼쪽귀
+  arc(sx2,sy2-s*3,s*2,s*2,radians(90),radians(180));    //오른쪽귀
+
+  strokeWeight(5);    //눈 굵기: 5
+  stroke(0);    //눈의 원 라인색: 검은색
+  fill(0);    //눈색: 검은색
+  ellipse(sx2-s*4, sy2-s, s/4,s/2);    //왼쪽눈
+  ellipse(sx2-s*2, sy2-s, s/4,s/2);    //오른쪽눈
+
+  strokeWeight(1);    //코,인중,입 굵기: 1
+  noFill();    //코, 입 채우지 않기
+  arc(sx2-s*3, sy2-s/2,s,s,radians(45),radians(135));    //코그리기
+  line(sx2-s*3, sy2+s/4,sx2-s*3, sy2+s/2);    //인중그리기
+  arc(sx2-s*3, sy2+s/4,s,s,radians(35),radians(145));    //입그리기
+
+  fill(255);    //머리털색: 흰색
+  stroke(255);    //머리털의 원 라인색: 흰색
+  ellipse(sx2-s*3, sy2-s*9/2, s*4,s*3);    //머리털그리기1
+  ellipse(sx2-s, sy2-s*7/2, s*2,s*2);    //머리털그리기2
+  ellipse(sx2-s*5, sy2-s*7/2, s*2,s*2);    //머리털그리기3
+}
 
 void draw(){
   background(#47E35F);
@@ -171,6 +220,14 @@ void draw(){
       flower1();
     }
   }
-  sheep1();
-  sheep2();
+  //sheep1();
+  sx2=(sx2+4)*sd2;
+  //sy2=sy2+(sx2/100);
+  if((sx2>width-s*7)||(sx2<s*7)){
+    sd2=-sd2;
+  }if(sd2==1){
+    sheep2_r();
+  }else{
+    sheep2_l();
+  }
 }
