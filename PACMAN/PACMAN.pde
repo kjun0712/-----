@@ -4,7 +4,7 @@ void setup(){
   lx = width/2; ly = height/2;
   ldx = -1; ldy = 1;
   px = p*3; py = height-p*3;
-  pdx = 1; pdy = -1;
+  pdx = 1; pdy = 0;
 }
 int p;
 int lx,ly;
@@ -31,7 +31,7 @@ void ladder(int x,int y,int lp){
   rect(x,y+lp*7,lp*10,lp);
 }
 
-void pacman(int a,int b,int pp,int dx){
+void pacman(int a,int b,int pp,int dx,int dy){
   if(dx==1){
     strokeWeight(2);
     noStroke();
@@ -41,10 +41,24 @@ void pacman(int a,int b,int pp,int dx){
     fill(0);
     ellipse(a+pp,b-pp,pp,pp);
   }else if(dx==-1){
-    strokeWeight(2);
+    strokeWeight(1);
     noStroke();
     fill(#FFFF00);
-    arc(a,b,pp*5,pp*5,PI+radians(30),HALF_PI+radians(60));
+    arc(a,b,pp*5,pp*5,radians(210),radians(510));
+    stroke(255);
+    fill(0);
+    ellipse(a-pp,b-pp,pp,pp);
+  }else if(dy==1){
+    strokeWeight(1);
+    fill(#FFFF00);
+    arc(a,b,pp*5,pp*5,radians(300),radians(600));
+    stroke(255);
+    fill(0);
+    ellipse(a-pp,b-pp,pp,pp);
+  }else if(dy==-1){
+    strokeWeight(1);
+    fill(#FFFF00);
+    arc(a,b,pp*5,pp*5,radians(120),radians(420));
     stroke(255);
     fill(0);
     ellipse(a-pp,b-pp,pp,pp);
@@ -65,8 +79,20 @@ void draw(){
   ladder(lx,ly,p);
   
   px=px+5*pdx;
+  py=py+2*pdy;
+  
   if(px-p*3<0 || px+p*3>width){
     pdx=-pdx;
   }
-  pacman(px,py,p,pdx);
+  pacman(px,py,p,pdx,pdy);
+  
+  if(px>=lx && px<=lx+10*p && py>=ly && py<=ly+10*p){
+  
+      pdx=0;
+      pdy=-1;
+      ldx=0;
+      ldy=0;
+    
+  }
+  
 }
